@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">Load user</button>
+    <ul id="list"></ul>
+</body>
+<script>
+    let btn=document.getElementById("btn")
+    let list=document.getElementById("list")
+
+    btn.addEventListener("click",()=>{
+   fetch("https://jsonplaceholder.typicode.com/comments?_limit=5")
+   .then(Response=>Response.json())
+   .then(Comments=>{
+    list.innerHTML=""
+
+    Comments.forEach(Comments => {
+        const li=document.createElement("li")
+        li.textContent=Comments.name;
+        list.appendChild(li)
+    });
+   })
+   .catch(err=>{
+    console.log(err);
+    
+   });
+
+    });
+
+  
+</script>
+</html>
